@@ -1,30 +1,25 @@
-# EcommerceMVC
-
-A full-featured e-commerce web application built with **ASP.NET Core MVC (.NET 8)**, converted from a Console Application as part of an academic exercise in software architecture and MVC design patterns.
+If the API is unavailable, the repository falls back to a hardcoded list of products automatically.
 
 ---
 
-## 📋 Table of Contents
+## Design Decisions
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [API Integration](#api-integration)
-- [Design Decisions](#design-decisions)
-- [Known Limitations](#known-limitations)
-- [Future Improvements](#future-improvements)
+- **Singleton services** — `ProductRepository` and `OrderService` registered as singletons to maintain in-memory state across requests
+- **Static cart** — Held in a static field for simplicity within the academic scope of this project
+- **CSS custom properties** — Color palette defined in `:root` for easy theming
+- **No Entity Framework** — Deliberately avoided to keep focus on MVC structure and separation of concerns
 
 ---
 
-## Overview
+## Known Limitations
 
-This project demonstrates the conversion of a C# Console Application into a structured **ASP.NET Core MVC** web application. The original console app implemented a basic e-commerce flow — product listing, cart management, and order placement — using in-memory data structures.
-
-The MVC version retains all original business logic while introducing a proper separation of concerns, HTTP request handling, Razor view rendering, and integration with an external REST API ([DummyJSON](https://dummyjson.com)) for realistic product data.
+- Cart state is shared across all users in the same process
+- No user authentication or authorization
+- Orders are lost on application restart
+- No input validation beyond ASP.NET Core defaults
 
 ---
 
-## Architecture
+
+
+
