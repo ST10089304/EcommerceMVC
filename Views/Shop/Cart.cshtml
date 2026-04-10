@@ -1,0 +1,58 @@
+@model IEnumerable<EcommerceMVC.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<div class="container mt-4">
+    <h2 class="section-title">Your Cart</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <h4 style="color: var(--wine)">Your cart is empty 🛒</h4>
+            <a asp-action="Index" class="btn-hero mt-3 d-inline-block">Start Shopping</a>
+        </div>
+    }
+    else
+    {
+        <table class="table cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                @if (!string.IsNullOrEmpty(item.Product.Thumbnail))
+                                {
+                                    <img src="@item.Product.Thumbnail" style="width:60px;height:60px;object-fit:cover;border-radius:8px;" />
+                                }
+                                @item.Product.Name
+                            </div>
+                        </td>
+                        <td>@item.Product.Price.ToString("C")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.TotalPrice.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-end">
+            <p class="cart-total">Grand Total: @Model.Sum(i => i.TotalPrice).ToString("C")</p>
+            <form asp-action="Checkout" method="post">
+                <button type="submit" class="btn-checkout">Checkout</button>
+            </form>
+        </div>
+    }
+
+    <a asp-action="Index" class="btn btn-outline-secondary mt-3">Continue Shopping</a>
+</div>

@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<h2>Order Confirmation</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<p>Thank you for your order!</p>
+<a asp-action="Index" class="btn btn-primary">Shop Again</a>
