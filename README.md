@@ -1,7 +1,3 @@
-If the API is unavailable, the repository falls back to a hardcoded list of products automatically.
-
----
-
 ## Design Decisions
 
 - **Singleton services** — `ProductRepository` and `OrderService` registered as singletons to maintain in-memory state across requests
@@ -19,6 +15,20 @@ If the API is unavailable, the repository falls back to a hardcoded list of prod
 - No input validation beyond ASP.NET Core defaults
 
 ---
+
+## Future Improvements
+
+- [ ] Entity Framework Core with SQL Server for persistent storage
+- [ ] ASP.NET Core Identity for user authentication
+- [ ] Session-based cart per user
+- [ ] Product search and category filtering
+- [ ] Quantity adjustment and item removal in cart
+- [ ] Order history per user
+- [ ] Unit tests with xUnit and Moq
+- [ ] Docker containerization
+
+---
+
 
 
 
